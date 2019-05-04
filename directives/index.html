@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue template - directives</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <a v-if="flag">vue.js</a>
+    <ul>
+        <li v-for="system in systems">{{system}}</li>
+    </ul>
+    <p v-show="flag">vue.js</p>
+    <h4 v-bind:id="uid">뷰 입문서</h4>
+    <button v-on:click="popupAlert">경고창</button>
+    <p>{{message}}</p>
+    <button v-on:click="reverse">역순</button>
+    <input v-model="text">
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            flag: false,
+            systems: ['android', 'ios', 'windows', 'mac'],
+            uid: 10,
+            message : 'hello vue.js!!',
+            text:'text'
+        },
+        methods: {
+            popupAlert: function (event) {
+                console.log(event);
+            },
+            reverse: function () {
+                this.message = this.message.split('').reverse().join('');
+                return this.message;
+            }
+        },
+        watch: {
+            text: function(data) {
+                console.log('text가 바뀌네요', data);
+            }
+        }
+    })
+</script>
+</body>
+</html>
