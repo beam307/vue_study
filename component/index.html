@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue component</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <header>
+        <h3>{{message}}</h3>
+    </header>
+    <todo-footer></todo-footer>
+    <todo-list></todo-list>
+</div>
+<script>
+    Vue.component('todo-footer', {
+        template: '<p>this is another global child component</p>'
+    });
+
+    var todoList = {
+        template :'<p>this is another local child component</p>'
+    }
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'this is parent component'
+        },
+        components: {
+            'todo-list' : todoList
+        }
+    })
+
+    new Vue({
+        el: '#app2'
+    })
+</script>
+</body>
+</html>
